@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar build/demo-0.0.1-SNAPSHOT.jar
+web: java -Dserver.port=$PORT -jar build/libs/Api-0.0.1-SNAPSHOT.jar
