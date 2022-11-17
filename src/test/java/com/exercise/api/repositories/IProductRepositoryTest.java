@@ -1,10 +1,14 @@
 package com.exercise.api.repositories;
 
+import com.exercise.api.entities.Color;
 import com.exercise.api.entities.Product;
+import com.exercise.api.entities.Size;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
@@ -15,13 +19,13 @@ class IProductRepositoryTest {
 
     @Test
     public void saveProduct() {
-
-        Product product = new Product();
-        product.setName("Test Product 3");
-        product.setPrice(150.50);
-        product.setStock(10);
-
-        productRepository.save(product);
+    	
+//        Product product = new Product();
+//        product.setName("Test Product 3");
+//        product.setPrice(150.50);
+//        product.setStock(10);
+//        
+//        productRepository.save(product);
     }
 
     @Test
