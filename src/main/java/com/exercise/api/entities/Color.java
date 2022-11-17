@@ -1,11 +1,13 @@
 package com.exercise.api.entities;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Entity
 @Data
+@EqualsAndHashCode(callSuper = true)
+
+@Entity
 @Table(name = "colors")
 public class Color extends BaseEntity {
 
