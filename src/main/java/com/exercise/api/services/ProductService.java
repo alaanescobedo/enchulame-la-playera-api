@@ -29,12 +29,12 @@ public class ProductService implements IProductService {
 
     public void addProduct(CreateProductDto createProductDto) {
         try {
-            List<Size> sizes = sizeRepository.findAllById(createProductDto.getSizes());
-            List<Color> colors = colorRepository.findAllById(createProductDto.getColors());
+            Size size = sizeRepository.findById(createProductDto.getSizes()).orElse(null);
+            Color color = colorRepository.findById(createProductDto.getColors()).orElse(null);
             ProductCategory category = categoryRepository.findById(createProductDto.getCategory()).get();
 
-            if (sizes.size() == 0) throw new IllegalStateException("Invalid size");
-            if (colors.size() == 0) throw new IllegalStateException("Invalid color");
+            if (size == null) throw new IllegalStateException("Invalid size");
+            if (color == null) throw new IllegalStateException("Invalid color");
             if(category == null) throw new IllegalStateException("Invalid category");
 
             Product product = new Product();
@@ -42,8 +42,8 @@ public class ProductService implements IProductService {
             product.setPrice(createProductDto.getPrice());
             product.setImage(createProductDto.getImg());
             product.setStock(createProductDto.getStock());
-            product.setSizes(sizes);
-            product.setColors(colors);
+            product.setSizes(List.of(size));
+            product.setColors(List.of(color));
             product.setCategory(category);
 
             productRepository.save(product);

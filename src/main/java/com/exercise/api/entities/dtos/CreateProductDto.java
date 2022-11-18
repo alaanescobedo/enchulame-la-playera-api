@@ -24,10 +24,10 @@ public class CreateProductDto {
     private int stock;
 
     @NotNull(message = "Sizes are required")
-    private List<Long> sizes;
+    private Long sizes;
 
     @NotNull(message = "Colors are required")
-    private List<Long> colors;
+    private Long colors;
 
 
 }
