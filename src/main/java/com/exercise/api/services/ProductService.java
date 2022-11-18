@@ -27,7 +27,7 @@ public class ProductService implements IProductService {
     @Autowired
     private IProductCategoryRepository categoryRepository;
 
-    public void addProduct(CreateProductDto createProductDto) {
+    public Product addProduct(CreateProductDto createProductDto) {
         try {
             Size size = sizeRepository.findById(createProductDto.getSizes()).orElse(null);
             Color color = colorRepository.findById(createProductDto.getColors()).orElse(null);
@@ -46,7 +46,7 @@ public class ProductService implements IProductService {
             product.setColors(List.of(color));
             product.setCategory(category);
 
-            productRepository.save(product);
+            return productRepository.save(product);
         } catch (Exception e) {
             throw new IllegalStateException(e.getMessage());
         }

@@ -28,10 +28,10 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<?> createProduct(@RequestBody CreateProductDto createProductDto) {
-            LOG.info(">>> Creating product: " + createProductDto.toString());
+        LOG.info(">>> Creating product: " + createProductDto.toString());
         try {
-             productService.addProduct(createProductDto);
-            return new ResponseEntity<String> ("Product Created", HttpStatus.CREATED);
+            Product productCreated = productService.addProduct(createProductDto);
+            return new ResponseEntity<Product>(productCreated, null, 200);
         } catch (IllegalStateException e) {
             return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IProductService {
 
-    void addProduct(CreateProductDto createProductDto);
+    Product addProduct(CreateProductDto createProductDto);
 
     List<Product> getAllProducts();
 
