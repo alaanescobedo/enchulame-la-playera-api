@@ -1,6 +1,6 @@
 package com.exercise.api.services;
 
-import com.exercise.api.dtos.CreateProductDto;
+import com.exercise.api.entities.dtos.CreateProductDto;
 import com.exercise.api.entities.Color;
 import com.exercise.api.entities.Product;
 import com.exercise.api.entities.ProductCategory;
@@ -27,15 +27,11 @@ public class ProductService {
     @Autowired
     private IProductCategoryRepository categoryRepository;
 
-
     public void addProduct(CreateProductDto createProductDto) {
         try {
-            System.out.println(">>>--- Creating product: " + createProductDto.toString());
             List<Size> sizes = sizeRepository.findAllById(createProductDto.getSizes());
             List<Color> colors = colorRepository.findAllById(createProductDto.getColors());
             ProductCategory category = categoryRepository.findById(createProductDto.getCategory()).get();
-
-            System.out.println(">>>--- Category: " + category.toString());
 
             if (sizes.size() == 0) throw new IllegalStateException("Invalid size");
             if (colors.size() == 0) throw new IllegalStateException("Invalid color");

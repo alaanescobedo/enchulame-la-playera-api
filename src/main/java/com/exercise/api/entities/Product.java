@@ -8,7 +8,6 @@ import java.util.List;
 
 @Entity
 @Data
-@EqualsAndHashCode(callSuper = true)
 @Table(name = "products")
 public class Product extends BaseEntity {
 

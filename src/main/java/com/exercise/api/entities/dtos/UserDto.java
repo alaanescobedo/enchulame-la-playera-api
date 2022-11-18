@@ -1,4 +1,4 @@
-package com.exercise.api.dtos;
+package com.exercise.api.entities.dtos;
 
 import com.exercise.api.entities.abstract_class.UserAbstract;
 

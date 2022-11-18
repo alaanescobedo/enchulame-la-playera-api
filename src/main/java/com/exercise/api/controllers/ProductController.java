@@ -1,7 +1,7 @@
 package com.exercise.api.controllers;
 
-import com.exercise.api.dtos.CreateProductDto;
-import com.exercise.api.dtos.UpdateStockDto;
+import com.exercise.api.entities.dtos.CreateProductDto;
+import com.exercise.api.entities.dtos.UpdateStockDto;
 import com.exercise.api.entities.Product;
 import com.exercise.api.exceptions.NotFoundException;
 import com.exercise.api.services.ProductService;
