@@ -1,6 +1,6 @@
 package com.exercise.api.services;
 
-import com.exercise.api.dtos.CreateProductDto;
+import com.exercise.api.entities.dtos.CreateProductDto;
 import com.exercise.api.entities.Product;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.exercise.api.dtos;
+package com.exercise.api.entities.dtos;
 
 import lombok.Data;
 
@@ -16,6 +16,12 @@ public class CreateProductDto {
 
     @NotNull(message = "Category is required")
     private Long category;
+
+    @NotNull(message = "IMG is required")
+    private String img;
+
+    @NotNull(message = "Stock is required")
+    private int stock;
 
     @NotNull(message = "Sizes are required")
     private List<Long> sizes;

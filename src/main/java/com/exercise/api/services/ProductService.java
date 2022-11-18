@@ -1,6 +1,6 @@
 package com.exercise.api.services;
 
-import com.exercise.api.dtos.CreateProductDto;
+import com.exercise.api.entities.dtos.CreateProductDto;
 import com.exercise.api.entities.Color;
 import com.exercise.api.entities.Product;
 import com.exercise.api.entities.ProductCategory;
@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductService {
+public class ProductService implements IProductService {
 
     @Autowired
     private IProductRepository productRepository;
@@ -27,22 +27,21 @@ public class ProductService {
     @Autowired
     private IProductCategoryRepository categoryRepository;
 
-
     public void addProduct(CreateProductDto createProductDto) {
         try {
-            System.out.println(">>>--- Creating product: " + createProductDto.toString());
             List<Size> sizes = sizeRepository.findAllById(createProductDto.getSizes());
             List<Color> colors = colorRepository.findAllById(createProductDto.getColors());
             ProductCategory category = categoryRepository.findById(createProductDto.getCategory()).get();
 
-            System.out.println(">>>--- Category: " + category.toString());
-
             if (sizes.size() == 0) throw new IllegalStateException("Invalid size");
             if (colors.size() == 0) throw new IllegalStateException("Invalid color");
+            if(category == null) throw new IllegalStateException("Invalid category");
 
             Product product = new Product();
             product.setName(createProductDto.getName());
             product.setPrice(createProductDto.getPrice());
+            product.setImage(createProductDto.getImg());
+            product.setStock(createProductDto.getStock());
             product.setSizes(sizes);
             product.setColors(colors);
             product.setCategory(category);
@@ -54,7 +53,11 @@ public class ProductService {
     }
 
     public List<Product> getAllProducts() {
-        return productRepository.findAll();
+        try {
+            return productRepository.findAll();
+        } catch (Exception e) {
+            throw new IllegalStateException(e.getMessage());
+        }
     }
 
     public Product updateStock(Long id, Integer stock) {

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IProductCategoryService {
 
-    void addProductCategory(ProductCategory productCategory);
+    ProductCategory addProductCategory(ProductCategory productCategory);
 
     List<ProductCategory> getAllProductCategories();
 
