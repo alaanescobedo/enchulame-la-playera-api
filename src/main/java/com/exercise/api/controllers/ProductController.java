@@ -43,7 +43,7 @@ public class ProductController {
     public ResponseEntity<?> getProductById(@PathVariable("id") Long id) {
         LOG.info(">>> Getting product with id: " + id);
         try {
-            Product product = productService.(id);
+            Product product = productService.getProductById(id);
             return new ResponseEntity<Product>(product, null, 200);
         } catch (NotFoundException e) {
             return new ResponseEntity<String>(e.getMessage(), HttpStatus.NOT_FOUND);
