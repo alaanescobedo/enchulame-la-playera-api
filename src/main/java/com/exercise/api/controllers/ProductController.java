@@ -39,6 +39,19 @@ public class ProductController {
         }
     }
 
+    @PostMapping("/multiple")
+    public ResponseEntity<?> createMultipleProducts (@RequestBody List<CreateProductDto> createProductDtoList) {
+        LOG.info(">>> Creating multiple products: " + createProductDtoList.toString());
+        try {
+            List<Product> productsCreated = productService.addMultipleProducts(createProductDtoList);
+            return new ResponseEntity<List<Product>>(productsCreated, null, 200);
+        } catch (IllegalStateException e) {
+            return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> getProductById(@PathVariable("id") Long id) {
         LOG.info(">>> Getting product with id: " + id);

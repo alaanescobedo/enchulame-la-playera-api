@@ -52,6 +52,35 @@ public class ProductService implements IProductService {
         }
     }
 
+    public List<Product> addMultipleProducts(List<CreateProductDto> createProductDtoList) {
+        try {
+            List<Product> products = createProductDtoList.stream().map(createProductDto -> {
+                Size size = sizeRepository.findById(createProductDto.getSizes()).orElse(null);
+                Color color = colorRepository.findById(createProductDto.getColors()).orElse(null);
+                ProductCategory category = categoryRepository.findById(createProductDto.getCategory()).get();
+
+                if (size == null) throw new IllegalStateException("Invalid size");
+                if (color == null) throw new IllegalStateException("Invalid color");
+                if (category == null) throw new IllegalStateException("Invalid category");
+
+                Product product = new Product();
+                product.setName(createProductDto.getName());
+                product.setPrice(createProductDto.getPrice());
+                product.setImage(createProductDto.getImg());
+                product.setStock(createProductDto.getStock());
+                product.setSizes(List.of(size));
+                product.setColors(List.of(color));
+                product.setCategory(category);
+
+                return product;
+            }).toList();
+
+            return productRepository.saveAll(products);
+        } catch (Exception e) {
+            throw new IllegalStateException(e.getMessage());
+        }
+    }
+
     public Product getProductById(Long id) {
         try {
             Product product = productRepository.findById(id).orElse(null);
