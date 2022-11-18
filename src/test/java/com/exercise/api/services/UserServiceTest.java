@@ -1,8 +1,7 @@
 package com.exercise.api.services;
 
-import com.exercise.api.dtos.AuthUser;
-import com.exercise.api.dtos.UserDto;
 import com.exercise.api.entities.User;
+import com.exercise.api.entities.dtos.*;
 import com.exercise.api.repositories.IUserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

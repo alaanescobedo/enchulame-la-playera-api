@@ -1,7 +1,6 @@
 package com.exercise.api.services;
 
-import com.exercise.api.dtos.AuthUser;
-import com.exercise.api.dtos.UserDto;
+import com.exercise.api.entities.dtos.*;
 import com.exercise.api.entities.User;
 
 public interface IUserService {

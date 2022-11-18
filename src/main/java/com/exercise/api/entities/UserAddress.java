@@ -1,10 +1,13 @@
 package com.exercise.api.entities;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
+
 @Entity
 @Table(name = "users_address")
 public class UserAddress extends BaseEntity {
