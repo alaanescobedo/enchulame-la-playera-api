@@ -17,6 +17,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/products")
+@CrossOrigin(origins = "*")
 public class ProductController {
 
     final Logger LOG = LoggerFactory.getLogger(ProductController.class);
