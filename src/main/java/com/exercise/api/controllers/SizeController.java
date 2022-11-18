@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/sizes")
+@CrossOrigin(origins = "*")
 public class SizeController {
 
     final Logger LOG = LoggerFactory.getLogger(ProductController.class);

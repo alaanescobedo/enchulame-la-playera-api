@@ -12,6 +12,7 @@ import com.exercise.api.repositories.IColorRepository;
 
 @Controller
 @RequestMapping("/colors")
+@CrossOrigin(origins = "*")
 public class ColorController {
 
     final Logger LOG = LoggerFactory.getLogger(ProductController.class);
