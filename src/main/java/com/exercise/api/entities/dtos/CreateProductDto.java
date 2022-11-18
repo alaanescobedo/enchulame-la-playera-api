@@ -17,6 +17,12 @@ public class CreateProductDto {
     @NotNull(message = "Category is required")
     private Long category;
 
+    @NotNull(message = "IMG is required")
+    private String img;
+
+    @NotNull(message = "Stock is required")
+    private int stock;
+
     @NotNull(message = "Sizes are required")
     private List<Long> sizes;
 

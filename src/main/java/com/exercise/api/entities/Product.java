@@ -4,10 +4,12 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
 @Data
+@EqualsAndHashCode(callSuper = true)
 @Table(name = "products")
 public class Product extends BaseEntity {
 
@@ -16,12 +18,6 @@ public class Product extends BaseEntity {
 
     @Column(name = "price", nullable = false)
     private Double price;
-
-    @Column(name = "description", nullable = false)
-    private String description;
-
-    @Column(name = "description_short", nullable = false)
-    private String descriptionShort;
 
     @Column(name = "image_url", nullable = false)
     private String image;
@@ -48,5 +44,4 @@ public class Product extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "color_id")
     )
     private List<Color> colors;
-
 }

@@ -35,10 +35,13 @@ public class ProductService implements IProductService {
 
             if (sizes.size() == 0) throw new IllegalStateException("Invalid size");
             if (colors.size() == 0) throw new IllegalStateException("Invalid color");
+            if(category == null) throw new IllegalStateException("Invalid category");
 
             Product product = new Product();
             product.setName(createProductDto.getName());
             product.setPrice(createProductDto.getPrice());
+            product.setImage(createProductDto.getImg());
+            product.setStock(createProductDto.getStock());
             product.setSizes(sizes);
             product.setColors(colors);
             product.setCategory(category);
