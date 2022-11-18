@@ -4,6 +4,7 @@ import com.exercise.api.entities.dtos.CreateProductDto;
 import com.exercise.api.entities.dtos.UpdateStockDto;
 import com.exercise.api.entities.Product;
 import com.exercise.api.exceptions.NotFoundException;
+import com.exercise.api.services.IProductService;
 import com.exercise.api.services.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +23,7 @@ public class ProductController {
     final Logger LOG = LoggerFactory.getLogger(ProductController.class);
 
     @Autowired
-    private ProductService productService;
+    private IProductService productService;
 
     @PostMapping
     public ResponseEntity<?> createProduct(@RequestBody CreateProductDto createProductDto) {
