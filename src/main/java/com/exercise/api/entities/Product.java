@@ -1,12 +1,14 @@
 package com.exercise.api.entities;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Data
+@EqualsAndHashCode(callSuper = true)
 @Table(name = "products")
 public class Product extends BaseEntity {
 
@@ -28,11 +30,11 @@ public class Product extends BaseEntity {
     @Column(name = "stock", nullable = false, insertable = false, columnDefinition = "int default 1")
     private Integer stock;
 
-    @ManyToOne(targetEntity = ProductCategory.class)
+    @ManyToOne(targetEntity = ProductCategory.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id", nullable = false)
     private ProductCategory category;
 
-    @ManyToMany(targetEntity = Size.class, fetch = FetchType.LAZY)
+    @ManyToMany(targetEntity = Size.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
             name = "products_sizes",
             joinColumns = @JoinColumn(name = "product_id"),
@@ -40,7 +42,7 @@ public class Product extends BaseEntity {
     )
     private List<Size> sizes;
 
-    @ManyToMany(targetEntity = Color.class,fetch = FetchType.EAGER)
+    @ManyToMany(targetEntity = Color.class,fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "products_colors",
             joinColumns = @JoinColumn(name = "product_id"),
