@@ -22,8 +22,8 @@ class UserAddressServiceTest {
     @Autowired
     private IUserAddressRepository userAddressRepository;
 
-    @Autowired
-    private UserAddressService service;
+    /*@Autowired
+    private UserAddressService service;*/
 
     private User user;
     private UserAddress address;
