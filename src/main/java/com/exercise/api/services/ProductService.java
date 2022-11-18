@@ -35,7 +35,7 @@ public class ProductService implements IProductService {
 
             if (size == null) throw new IllegalStateException("Invalid size");
             if (color == null) throw new IllegalStateException("Invalid color");
-            if(category == null) throw new IllegalStateException("Invalid category");
+            if (category == null) throw new IllegalStateException("Invalid category");
 
             Product product = new Product();
             product.setName(createProductDto.getName());
@@ -48,6 +48,17 @@ public class ProductService implements IProductService {
 
             return productRepository.save(product);
         } catch (Exception e) {
+            throw new IllegalStateException(e.getMessage());
+        }
+    }
+
+    public Product getProductById(Long id) {
+        try {
+            Product product = productRepository.findById(id).orElse(null);
+            if (product == null) throw new IllegalStateException("Product not found");
+            return product;
+        }
+        catch (Exception e) {
             throw new IllegalStateException(e.getMessage());
         }
     }

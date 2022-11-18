@@ -39,6 +39,19 @@ public class ProductController {
         }
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getProductById(@PathVariable("id") Long id) {
+        LOG.info(">>> Getting product with id: " + id);
+        try {
+            Product product = productService.(id);
+            return new ResponseEntity<Product>(product, null, 200);
+        } catch (NotFoundException e) {
+            return new ResponseEntity<String>(e.getMessage(), HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @GetMapping
     public ResponseEntity<?> getAllProducts() {
         LOG.info("Getting all products");
